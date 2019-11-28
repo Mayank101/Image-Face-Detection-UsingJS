@@ -58,7 +58,7 @@ const loadLabeledImages = ()=>{
 
                 //fetchImage() function only takes images whcih is hosted on the server, 
                 //not the local images so we will be using the github link where all these images are hosted
-                const img = await faceapi.fetchImage(`https://github.com/WebDevSimplified/Face-Recognition-JavaScript/tree/master/labeled_images/${label}/${i}.jpg`)
+                const img = await faceapi.fetchImage(`https://github.com/Mayank101/Image-Face-Detection-UsingJS/tree/master/labeled_images/${label}/${i}.jpg`)
                 const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
                 descriptions.push(detections.descriptor)
             }
