@@ -9,12 +9,19 @@ const start = async ()=>{
     //this varibale contains the face matcher data and % required to detect that as a face ie., 0.6 means 60% means 
     //algorithm is 60% sure who that character is
     const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, .6)
+    let image
+    let canvas
     document.body.append('Loaded')
     //adding event listener whenever we upload or change the image
     imageUpload.addEventListener('change', async ()=>{
-        const image = await faceapi.bufferToImage(imageUpload.files[0])
+        
+        //remove the image rectangle whenever we upload a new image and get a new one
+        if(image) image.remove()
+        if(canvas) canvas.remove()
+
+        image = await faceapi.bufferToImage(imageUpload.files[0])
         container.append(image)
-        const canvas = faceapi.createCanvasFromMedia(image)
+        canvas = faceapi.createCanvasFromMedia(image)
         container.append(canvas)
 
         //resize our canvas according to our image
